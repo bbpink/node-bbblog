@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ core.url }}/rss.xml" />
+  <title></title>
+</head>
+
+<body>
+  <div id="wrap">
+
+    <% include "header" %>
+
+    <div id="content">
+
+      <div id="main">
+        <% content %>
+      </div>
+
+      <nav>
+
+        <div>
+          <h2>profile</h2>
+          <a href="http://bbpink.sevensenses.jp">bbpink.sevensenses.jp</a>
+        </div>
+
+        <div>
+          <h2>recent</h2>
+          <ul>
+            {% for v in model.recentTitles %}
+            <li><a href="{{ core.url }}/article/{{ v.id }}">{{ v.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <h2>backnumber</h2>
+          <ul>
+
+            {% for k, v in model.backNumbers %}
+            <li>{{ k }}
+              <ul>
+                {% for vv in v %}
+                <li><a href="{{ core.url }}/{{ vv.year }}/{{ vv.month }}/">{{ vv.year }}/{{vv.month}} ({{ vv.articles }})</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <h2>powered by</h2>
+          <a href="https://github.com/bbpink/bbblog">bbblog</a>
+        </div>
+      </nav>
+    </div>
+
+    <% include "footer" %>
+  </div>
+
+  <script src="/bbblog.js"></script>
+</body>
+
+</html>
